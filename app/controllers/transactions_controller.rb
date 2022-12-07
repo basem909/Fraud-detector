@@ -3,8 +3,8 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     @transaction.transaction_date = DateTime.now
 
-
-    if repetition(@transaction)
+    
+    if repetition(@transaction) or daily_limit(@transaction)
       render json: { transaction_id: @transaction.transaction_id , recommendation:'Reject'} 
       @transaction.save
     else
@@ -26,6 +26,16 @@ class TransactionsController < ApplicationController
 
     return true if time_difference < 2
     return false 
+  end
+
+  def daily_limit(transaction)
+    daily_transactions = Transaction.where(user_id: transaction.user_id).where(transaction_date: Date.today.all_day)
+    return false unless daily_transactions
+
+    daily_payment_made = daily_transactions.sum(:transaction_amount)
+
+    return if daily_payment_made >= 5000
+    return false
   end
 
   def transaction_params
