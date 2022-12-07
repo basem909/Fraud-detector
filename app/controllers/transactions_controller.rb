@@ -3,8 +3,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     @transaction.transaction_date = DateTime.now
 
-    
-    if repetition(@transaction) or daily_limit(@transaction)
+    if repetition(@transaction) or daily_limit(@transaction) or cbk_history(@transaction)
       render json: { transaction_id: @transaction.transaction_id , recommendation:'Reject'} 
       @transaction.save
     else
@@ -34,10 +33,16 @@ class TransactionsController < ApplicationController
 
     daily_payment_made = daily_transactions.sum(:transaction_amount)
 
-    return if daily_payment_made >= 5000
+    return true if daily_payment_made >= 5000
     return false
   end
 
+  def cbk_history(transaction)
+    chargebacks_history = Transaction.where(user_id: transaction.user_id ).where(has_cbk: true).count
+
+    return true if chargebacks_history > 0
+    return false
+  end
   def transaction_params
      params.permit(:transaction_id, :merchant_id, :user_id, :card_number, :transaction_amount, :device_id, :has_cbk)
   end
