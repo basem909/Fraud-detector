@@ -7,5 +7,5 @@ class Transaction < ApplicationRecord
   validates :card_number, presence: true
   validates :transaction_date, presence: true
   validates :transaction_amount, presence: true
-  validates :has_cbk, presence: true
+
 end

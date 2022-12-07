@@ -15,11 +15,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_050627) do
   enable_extension "plpgsql"
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "transaction_id"
-    t.integer "merchant_id"
-    t.integer "user_id"
-    t.integer "card_number"
-    t.date "transaction_date"
+    t.bigint "transaction_id"
+    t.bigint "merchant_id"
+    t.bigint "user_id"
+    t.bigint "card_number"
+    t.datetime "transaction_date", precision: nil
     t.decimal "transaction_amount", precision: 8, scale: 2
     t.integer "device_id"
     t.boolean "has_cbk", default: false
