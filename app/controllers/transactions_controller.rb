@@ -48,11 +48,16 @@ class TransactionsController < ApplicationController
     daily_transactions = Transaction.where(user_id: transaction.user_id).where(transaction_date: Date.today.all_day)
     return false unless daily_transactions # in case of first transaction of the day
 
+    # daily transaction limit
+    @payment_limit = 5000
+
+    # if the new transaction exceeds the limit of the daily limit it should raise the suspicion
+    return true if transaction.transaction_amount > @payment_limit
+
     # Getting the total of the transaction made by thue user on that day
     daily_payment_made = daily_transactions.sum(:transaction_amount)
 
-    # daily transaction limit
-    @payment_limit = 5000
+    
 
     # checking the rule of limited payment per day
     return true if daily_payment_made >= @payment_limit
