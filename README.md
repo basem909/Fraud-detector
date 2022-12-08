@@ -70,12 +70,12 @@ Windows users have to specify ruby in this case:
 ruby bin/rspec
 ```
 ## Documentation
+code video:
+https://www.loom.com/share/df748664fe33442ab28fade6eb28d064
 
-https://user-images.githubusercontent.com/92399469/197322063-0143ec6b-2f69-4b45-809b-ab02e6dbb579.mp4
-## Live Demo
-[property exhibition](https://apartrent23.fly.dev/)
-## Kanban board
-https://github.com/basem909/property-exhibit/projects/1
+requests video:
+https://www.loom.com/share/df748664fe33442ab28fade6eb28d064
+
 
 ## Authors
 

@@ -1,8 +1,5 @@
 class TransactionsController < ApplicationController
-  # time limit to enable making a new transaction
-  @time_limit = 2
-  # daily transaction limit
-  @payment_limit = 5000
+  
   def create
     # starting a new record based on the passed params
     @transaction = Transaction.new(transaction_params)
@@ -36,6 +33,9 @@ class TransactionsController < ApplicationController
     # the difference between the 2 transactions turned into minutes
     time_difference = (new_date - previous_transaction_date) / 1.minutes 
 
+    # time limit to enable making a new transaction
+    @time_limit = 2
+
     # checking the rule of repeatetive transaction periodically
     return true if time_difference < @time_limit
     return false 
@@ -51,8 +51,11 @@ class TransactionsController < ApplicationController
     # Getting the total of the transaction made by thue user on that day
     daily_payment_made = daily_transactions.sum(:transaction_amount)
 
+    # daily transaction limit
+    @payment_limit = 5000
+
     # checking the rule of limited payment per day
-    return true if daily_payment_made >= @daily_limit
+    return true if daily_payment_made >= @payment_limit
     return false
   end
 
