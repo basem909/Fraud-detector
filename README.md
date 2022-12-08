@@ -7,6 +7,7 @@
 
 - Ruby on Rails
 - Postgres SQL
+- Rspec
 
 ## Getting Started
 
