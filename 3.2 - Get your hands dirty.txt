@@ -1,9 +1,0 @@
-Analyze the data provided and present your conclusions (consider that all transactions are made using a mobile device).
-So by analyzing the sheet provided I could see some suspicious activities and fraudlent ones in some patterns such as:
-  - a specific user with the same devise Id targetting the same merchant with different ammount transactions in a very short period and usually such user have a history of chargebacks. user 486 for example.
-  - Users with blocked device id and history of chargebacks doing big transactions in once 
-  - Some users with chargebacks history target the same merchant making almost the same amout transactions in a relatively short time for example user 11750 on merchant 17275 for around 650$ in a matter of few hours
-  - A fraudlent user with suspicious activity usually appear on the recoed once with repitive process within a short period of time meanwhile a regular user usually has more than one record on different days and different merchants with various range of money.
-  - a card is being used associated with different users and usually with chargebacks is a very suspicious activity.
-  - Making similar transaction with the same amount of money from 3 or more different merchants at almost the same time with big amount and almost similar is a suspicious activity taking in consideration a history of chargebacks.
-  - Usually transactions made to a merchant fall within a range of payments relational to their line of commerce so an extreme number out of the range of the transactions for this nerchant is very suspicious especially with a history of chargebacks.
